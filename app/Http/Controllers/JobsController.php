@@ -39,7 +39,7 @@ class JobsController extends Controller
     public function singleJob($id)
     {
         $job = Job::find($id);
-
+        if(!$job) return abort(404);
         return view('jobs.single-job', compact('job'));
     }
 
