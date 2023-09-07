@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobsController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +17,6 @@ use App\Http\Controllers\JobsController;
 Route::get('/', function () {
     return view('jobs.all-jobs');
 });
-
 
 Route::group(['prefix' => 'jobs'], function () {
     Route::get('/all', [JobsController::class, 'listJobs']);

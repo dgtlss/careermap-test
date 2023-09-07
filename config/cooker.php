@@ -56,7 +56,6 @@ return [
         'packageManager' => env('COOKER_PACKAGE_MANAGER', 'jsdelivr'),
     ],
 
-    
     'ovens' => [
         [
             'cooker' => 'Genericmilk\Cooker\Ovens\Less',
@@ -78,31 +77,31 @@ return [
                 */
             ],
             'input' => [
-                'app.less'
+                'app.less',
             ],
             'output' => 'app.css',
             'name' => 'Example Css',
-            'stamped' => true
+            'stamped' => true,
         ],
         [
             'cooker' => 'Genericmilk\Cooker\Ovens\Js',
             'preload' => [
                 [
                     'dev' => 'https://unpkg.com/vue@3/dist/vue.global.js',
-                    'prod' => 'https://unpkg.com/vue@3.3.4/dist/vue.global.prod.js'
+                    'prod' => 'https://unpkg.com/vue@3.3.4/dist/vue.global.prod.js',
                 ],
                 'https://cdn.jsdelivr.net/npm/sweetalert2@11',
                 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js',
-                'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'
+                'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',
             ],
             'input' => [
-                'app.js'
+                'app.js',
             ],
             'namespace' => 'app',
             'output' => 'app.js',
             'name' => 'Example Javascript',
             'stamped' => true,
-            'toolbelt' => true
-        ]
-    ]   
+            'toolbelt' => true,
+        ],
+    ],
 ];
