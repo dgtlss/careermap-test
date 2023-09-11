@@ -20,13 +20,13 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'jobs'], function () {
-    Route::get('/all', [JobsController::class, 'index']);
-    Route::post('/create', [JobsController::class, 'store']);
+    Route::get('/all', [JobsController::class, 'index'])->name('index');
+    Route::post('/create', [JobsController::class, 'store'])->name('store');
 });
 
 Route::group(['prefix' => 'job'], function () {
-    Route::get('/new-job', [JobsController::class, 'create']);
+    Route::get('/new-job', [JobsController::class, 'create'])->name('newjobform');
     Route::get('/i/{job}', function (JobPost $job) {
         return view('jobs.singleJob', compact('job'));
-    });
+    })->name('jobpost');
 });

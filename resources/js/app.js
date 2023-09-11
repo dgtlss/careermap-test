@@ -73,7 +73,7 @@ var app = {
                                 title: 'Success',
                                 text: response.data.message,
                             }).then(function(){
-                                window.location.href = '/job/i/'+response.data.job.id+'';
+                                window.location.href = '/job/i/'+response.data.job.uid+'';
                             });
                         }).catch(function(error){
                             Swal.fire({

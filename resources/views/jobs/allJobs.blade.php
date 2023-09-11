@@ -8,7 +8,7 @@
         <Transition>
             <div id="joblistContainer" class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4" v-show="jobsLoading == false" v-cloak>
                 <div class="joblisting w-full bg-white shadow-md rounded-md border border-gray-200 p-2 overflow-hidden" v-for="job in jobs">
-                    <a :href='"/job/i/"+job.id'>
+                    <a :href='"/job/i/"+job.uid'>
                         <div class="flex flex-row gap-4 items-center">
                             <div class="flex-none">
                                 <span class="inline-flex h-16 w-16 items-center justify-center rounded-sm bg-indigo-500 capitalize">

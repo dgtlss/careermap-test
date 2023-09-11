@@ -14,5 +14,24 @@ class JobPost extends Model
     protected $fillable = [
         'title',
         'description',
+        'uid',
     ];
+
+    protected $casts = [
+        'uid' => 'string',
+    ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($job) {
+            $job->uid = uniqid(true);
+        });
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'uid';
+    }
 }
