@@ -29,5 +29,4 @@ Route::group(['prefix' => 'job'], function () {
     Route::get('/i/{job}', function (JobPost $job) {
         return view('jobs.singleJob', compact('job'));
     });
-    //Route::get('/i/{id}', [JobsController::class, 'singleJob']);
 });
