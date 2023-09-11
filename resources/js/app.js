@@ -63,34 +63,25 @@ var app = {
                 },
                 methods:{
                     async createJob(){
-                        // first we need to make sure that both fields have been filled in
-                        if(this.title == '' || this.description == ''){
+                        // both fields have been filled out, we can now send this data to the backend for processing
+                        var jobsubmission = await axios.post('/jobs/create',{
+                            title: this.title,
+                            description: this.description
+                        }).then(function(response){
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: response.data.message,
+                            }).then(function(){
+                                window.location.href = '/job/i/'+response.data.job.id+'';
+                            });
+                        }).catch(function(error){
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Oops...',
-                                text: 'Please fill in all fields before submitting the form',
+                                text: error.response.data.message,
                             });
-                        }else{
-                            // both fields have been filled out, we can now send this data to the backend for processing
-                            var jobsubmission = await axios.post('/jobs/create',{
-                                title: this.title,
-                                description: this.description
-                            }).then(function(response){
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Success',
-                                    text: response.data.message,
-                                }).then(function(){
-                                    window.location.href = '/job/i/'+response.data.job.id+'';
-                                });
-                            }).catch(function(error){
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Oops...',
-                                    text: 'Something went wrong, please try again or contact support',
-                                });
-                            });
-                        }
+                        });
                     }
                 },
                 mounted(){

@@ -2,58 +2,55 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Job;
+use App\Models\JobPost;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class JobsController extends Controller
 {
-    public function listJobs()
+    public function index()
     {
-        $jobs = Job::orderByDesc('created_at')->get();
+        /* Get all of the jobs from the database with the newest item first */
+        $jobs = JobPost::latest()->get();
 
+        /* Return all of the jobs as a JSON response */
         return response()->json([
             'jobs' => $jobs,
-        ]);
+        ], 200);
     }
 
-    public function createJob()
+    public function store(Request $request)
     {
-        // check that the information has been sent properly
-        $data = request()->validate([
-            'title' => 'required',
-            'description' => 'required',
+        /* Validate the information that has been sent via the request
+         The title and description should be both strings and are required
+        */
+
+        $data = $request->validate([
+            'title' => 'required | string | max:255',
+            'description' => 'required | string',
         ]);
 
-        // Create the job
-        $job = Job::create([
+        /* Now that the data has been validated we need to create a new job post
+         and save it to the database
+        */
+
+        $job = JobPost::create([
             'title' => $data['title'],
             'description' => $data['description'],
         ]);
 
-        // return a response for the frontend
+        /* Return a response to the user with the job that has been created
+         and a message to let them know that the job has been created
+        */
+
         return response()->json([
             'job' => $job,
             'message' => 'Job created successfully',
         ], 200);
     }
 
-    public function singleJob($id)
+    public function create(): View
     {
-        $job = Job::find($id);
-        if(!$job) return abort(404);
-        return view('jobs.single-job', compact('job'));
-    }
-
-    public function singleJobInformation($id)
-    {
-        $job = Job::find($id);
-
-        return response()->json([
-            'job' => $job,
-        ]);
-    }
-
-    public function newJobForm()
-    {
-        return view('jobs.new-job');
+        return view('jobs.newJob');
     }
 }

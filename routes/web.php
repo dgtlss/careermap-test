@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\JobsController;
 use Illuminate\Support\Facades\Route;
+use App\Models\JobPost;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +16,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('jobs.all-jobs');
+    return view('jobs.allJobs');
 });
 
 Route::group(['prefix' => 'jobs'], function () {
-    Route::get('/all', [JobsController::class, 'listJobs']);
-    Route::post('/create', [JobsController::class, 'createJob']);
+    Route::get('/all', [JobsController::class, 'index']);
+    Route::post('/create', [JobsController::class, 'store']);
 });
 
 Route::group(['prefix' => 'job'], function () {
-    Route::get('/new-job', [JobsController::class, 'newJobForm']);
-    Route::get('/i/{id}', [JobsController::class, 'singleJob']);
+    Route::get('/new-job', [JobsController::class, 'create']);
+    Route::get('/i/{job}', function (JobPost $job) {
+        return view('jobs.singleJob', compact('job'));
+    });
+    //Route::get('/i/{id}', [JobsController::class, 'singleJob']);
 });
