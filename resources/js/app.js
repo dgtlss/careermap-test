@@ -66,7 +66,8 @@ var app = {
                         // both fields have been filled out, we can now send this data to the backend for processing
                         var jobsubmission = await axios.post('/jobs/create',{
                             title: this.title,
-                            description: this.description
+                            description: this.description,
+                            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                         }).then(function(response){
                             Swal.fire({
                                 icon: 'success',

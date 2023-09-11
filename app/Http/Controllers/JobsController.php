@@ -26,7 +26,16 @@ class JobsController extends Controller
         $data = $request->validate([
             'title' => 'required | string | max:255',
             'description' => 'required | string',
+            'csrf' => 'required',
         ]);
+
+        /* make sure the CSRF token that has been sent with the request
+         matches the one that is stored in the session */
+        if ($data['csrf'] !== csrf_token()) {
+            return response()->json([
+                'message' => 'CSRF token mismatch',
+            ], 401);
+        }
 
         /* Strip any HTML tags from the title and description & cleanup any whitespace */
         $data['title'] = strip_tags(trim($data['title']));

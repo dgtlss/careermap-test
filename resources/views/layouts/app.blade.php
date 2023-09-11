@@ -6,6 +6,8 @@
         <title>Careermap Job Board Test</title>
         <link rel="shortcut icon" href="/img/favicon.png" type="image/png">
         <link rel="stylesheet" href="/css/tailwind.css">
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         {!! cooker_resource('app.css') !!}
     </head>
     <body class="antialiased">
