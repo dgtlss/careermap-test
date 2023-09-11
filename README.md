@@ -11,6 +11,12 @@ To get started with the application you will need to do the following:
 - Clone the repo to your device
 - Run `composer install`
 - Run `cp .env.example .env`
+- Add your database credentials to the .env file under the `DB_` section as shown below:
+```
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_username
+DB_PASSWORD=your_database_password
+```
 - Run `php artisan key:generate`
 - Run `php artisan migrate --seed` to fill the database with 30 dummy jobs
 - Run `php artisan cooker:cook` to generate the minified js & css files
