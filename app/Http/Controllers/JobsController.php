@@ -22,27 +22,25 @@ class JobsController extends Controller
     public function store(Request $request)
     {
         /* Validate the information that has been sent via the request
-         The title and description should be both strings and are required
-        */
-
+         The title and description should be both strings and are required */
         $data = $request->validate([
             'title' => 'required | string | max:255',
             'description' => 'required | string',
         ]);
 
-        /* Now that the data has been validated we need to create a new job post
-         and save it to the database
-        */
+        /* Strip any HTML tags from the title and description */
+        $data['title'] = strip_tags($data['title']);
+        $data['description'] = strip_tags($data['description']);
 
+        /* Now that the data has been validated we need to create a new job post
+         and save it to the database */
         $job = JobPost::create([
             'title' => $data['title'],
             'description' => $data['description'],
         ]);
 
         /* Return a response to the user with the job that has been created
-         and a message to let them know that the job has been created
-        */
-
+         and a message to let them know that the job has been created */
         return response()->json([
             'job' => $job,
             'message' => 'Job created successfully',
