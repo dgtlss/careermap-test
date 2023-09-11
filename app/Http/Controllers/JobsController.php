@@ -28,9 +28,9 @@ class JobsController extends Controller
             'description' => 'required | string',
         ]);
 
-        /* Strip any HTML tags from the title and description */
-        $data['title'] = strip_tags($data['title']);
-        $data['description'] = strip_tags($data['description']);
+        /* Strip any HTML tags from the title and description & cleanup any whitespace */
+        $data['title'] = strip_tags(trim($data['title']));
+        $data['description'] = strip_tags(trim($data['description']));
 
         /* Now that the data has been validated we need to create a new job post
          and save it to the database */
