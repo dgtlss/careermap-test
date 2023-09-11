@@ -19,6 +19,8 @@ class JobPost extends Model
 
     protected $casts = [
         'uid' => 'string',
+        'title' => 'string',
+        'description' => 'string',
     ];
 
     protected static function boot()
