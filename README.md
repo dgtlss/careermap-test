@@ -1,5 +1,7 @@
 # Careermap Test Application - 2023
 
+![Careermap Test Preview](/public/img/screenshot_site.png "Careermap Test Preview")
+
 ## Introduction
 
 This is a test application for the Careermap Application Process. It is a simple web application that allows users to view a list of jobs, create new jobs & view single job posts.
